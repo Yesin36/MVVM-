@@ -1,6 +1,17 @@
 package com.gogote.shayari
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.Date
 
-data class DataEntity( var id: Int,var date:Date,var shayari:String) {
-}
+@Entity(tableName = "shayari_table")
+data class DataEntity
+    (
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int,
+    @ColumnInfo(name = "date")
+    var date:Date,
+    @ColumnInfo(name = "shayari")
+    var shayari:String)
