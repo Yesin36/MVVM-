@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gogote.shayari.databinding.ActivityMainBinding
 
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    private var shayariList= ArrayList<DataEntity>()
+    private lateinit var myViewModel: MyViewModel
+
+    public var shayariList= ArrayList<DataEntity>()
 
     private val rvAdapter by lazy {
         RvAdapter(this,shayariList)
@@ -32,19 +35,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        shayariList.addAll(SampleData.data)
+        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+//        shayariList.addAll(SampleData.data)
         binding.rvView.layoutManager = LinearLayoutManager(this)
         binding.rvView.adapter = rvAdapter
         rvAdapter.notifyDataSetChanged()
 
 
         binding.fab.setOnClickListener { view ->
-           startActivity(Intent(this, AddEditActivity::class.java))
+//           startActivity(Intent(this, AddEditActivity::class.java))
+            rvAdapter.shayariList=myViewModel.getData()
+            rvAdapter.notifyDataSetChanged()
+
 
 
 
         }
 
+
+    }
 
     }
 
