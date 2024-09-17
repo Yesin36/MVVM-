@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener { view ->
 //           startActivity(Intent(this, AddEditActivity::class.java))
-            rvAdapter.shayariList=myViewModel.getData()
+            rvAdapter.shayariList=myViewModel.shayariList
             rvAdapter.notifyDataSetChanged()
 
 
@@ -62,4 +62,3 @@ class MainActivity : AppCompatActivity() {
 
 
 
-}
